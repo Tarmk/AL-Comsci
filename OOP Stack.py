@@ -1,4 +1,3 @@
-
 class stack:
     def __init__(self, max_size=5):
         self.max= max_size
