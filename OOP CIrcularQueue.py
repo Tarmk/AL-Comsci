@@ -9,10 +9,10 @@ class Queue:
     def enqueue(self, item):
         if self.itemno == self.max:
             raise IndexError("Queue Full")
-        self.rear = (self.rear +1 ) % self.max
+        self.rear = (self.rear + 1) % self.max
         self.data[self.rear] = item
         self.itemno += 1
-        
+
     def dequeue(self):
         if self.front == self.rear + 1:
             raise IndexError("Queue Empty")
