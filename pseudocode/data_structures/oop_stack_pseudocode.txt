@@ -1,0 +1,44 @@
+TYPE Stack
+    Private Max : INTEGER
+    Private Data : ARRAY OF STRING
+    Private Top : INTEGER
+ENDTYPE
+
+PROCEDURE Stack.Init(ByValue MaxSize : INTEGER)
+    Max <- MaxSize
+    Data <- NEW ARRAY[0:Max-1] OF STRING
+    Top <- -1
+ENDPROCEDURE
+
+PROCEDURE Stack.Push(ByValue Item : STRING)
+    IF Top = Max - 1 THEN
+        RAISE "Stack Full"
+    ELSE
+        Top <- Top + 1
+        Data[Top] <- Item
+    ENDIF
+ENDPROCEDURE
+
+FUNCTION Stack.Pop() RETURNS STRING
+    IF Top = -1 THEN
+        RAISE "Empty Stack"
+    ELSE
+        DECLARE Item : STRING
+        Item <- Data[Top]
+        Data[Top] <- ""
+        Top <- Top - 1
+        RETURN Item
+    ENDIF
+ENDFUNCTION
+
+// Example usage
+DECLARE S : Stack
+CALL S.Init(5)
+CALL S.Push("Tarm")
+CALL S.Push("Vivaan")
+OUTPUT S.Pop()
+CALL S.Push("Hello")
+CALL S.Push("Hi")
+OUTPUT S.Pop()
+
+

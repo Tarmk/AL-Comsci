@@ -28,14 +28,15 @@ def enque(item):
         queue[rearPointer] = item
         itemno += 1
 
-    
+if __name__ == "__main__":
+    print(deque())
+    enque("Hello")
+    enque("hi")
+    enque("TJ")
+    enque("test")
+    print(deque())
+    print(deque())
+    enque("abc")
+    print(queue)
 
-print(deque())
-enque("Hello")
-enque("hi")
-enque("TJ")
-enque("test")
-print(deque())
-print(deque())
-enque("abc")
-print(queue)
+

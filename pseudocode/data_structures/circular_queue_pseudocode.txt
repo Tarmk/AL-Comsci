@@ -1,0 +1,60 @@
+CONSTANT Max <- 5
+DECLARE Queue : ARRAY[0:Max-1] OF STRING
+DECLARE FrontPointer : INTEGER
+DECLARE RearPointer : INTEGER
+DECLARE ItemCount : INTEGER
+
+// initial data (example)
+Queue[0] <- "Tarm"
+Queue[1] <- "Vivaan"
+FrontPointer <- 1
+RearPointer <- 0
+ItemCount <- 2
+
+FUNCTION NextIndex(Index : INTEGER) RETURNS INTEGER
+    RETURN (Index + 1) MOD Max
+ENDFUNCTION
+
+FUNCTION IsFull() RETURNS BOOLEAN
+    RETURN ItemCount = Max
+ENDFUNCTION
+
+FUNCTION IsEmpty() RETURNS BOOLEAN
+    RETURN ItemCount = 0
+ENDFUNCTION
+
+FUNCTION Dequeue() RETURNS STRING
+    IF IsEmpty() THEN
+        OUTPUT "Empty Queue"
+        RETURN ""
+    ELSE
+        DECLARE Item : STRING
+        Item <- Queue[FrontPointer]
+        FrontPointer <- NextIndex(FrontPointer)
+        ItemCount <- ItemCount - 1
+        RETURN Item
+    ENDIF
+ENDFUNCTION
+
+PROCEDURE Enqueue(ByValue Item : STRING)
+    IF IsFull() THEN
+        OUTPUT "Full Queue"
+    ELSE
+        RearPointer <- NextIndex(RearPointer)
+        Queue[RearPointer] <- Item
+        ItemCount <- ItemCount + 1
+    ENDIF
+ENDPROCEDURE
+
+// Example usage
+OUTPUT Dequeue()
+CALL Enqueue("Hello")
+CALL Enqueue("hi")
+CALL Enqueue("TJ")
+CALL Enqueue("test")
+OUTPUT Dequeue()
+OUTPUT Dequeue()
+CALL Enqueue("abc")
+OUTPUT Queue
+
+

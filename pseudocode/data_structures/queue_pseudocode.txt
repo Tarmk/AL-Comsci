@@ -1,0 +1,40 @@
+CONSTANT Max <- 5
+CONSTANT NullPointer <- -1
+
+DECLARE Queue : ARRAY[0:Max-1] OF STRING
+DECLARE FrontPointer : INTEGER
+DECLARE RearPointer : INTEGER
+
+// initial data (example)
+Queue[0] <- "Tarm"
+Queue[1] <- "Vivaan"
+FrontPointer <- 1
+RearPointer <- 0
+
+PROCEDURE Dequeue()
+    IF FrontPointer = RearPointer + 1 THEN
+        OUTPUT "Empty Queue"
+    ELSE
+        OUTPUT Queue[FrontPointer]
+        Queue[FrontPointer] <- ""
+        FrontPointer <- FrontPointer + 1
+    ENDIF
+ENDPROCEDURE
+
+PROCEDURE Enqueue(ByValue Item : STRING)
+    IF RearPointer = Max - 1 THEN
+        OUTPUT "Full Queue"
+    ELSE
+        RearPointer <- RearPointer + 1
+        Queue[RearPointer] <- Item
+    ENDIF
+ENDPROCEDURE
+
+// Example usage
+CALL Dequeue()
+OUTPUT Queue
+CALL Enqueue("Hello")
+OUTPUT Queue
+CALL Enqueue("hi")
+
+

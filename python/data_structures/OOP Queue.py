@@ -19,11 +19,14 @@ class Queue:
         return item
     
 
-q = Queue(5)
-q.enqueue("Tarm")
-q.enqueue("Vivaan")
-print(q.dequeue())
-q.enqueue("Hello")
-q.enqueue("Hi")
-print(q.dequeue())
-print(q.dequeue())
+if __name__ == "__main__":
+    q = Queue(5)
+    q.enqueue("Tarm")
+    q.enqueue("Vivaan")
+    print(q.dequeue())
+    q.enqueue("Hello")
+    q.enqueue("Hi")
+    print(q.dequeue())
+    print(q.dequeue())
+
+

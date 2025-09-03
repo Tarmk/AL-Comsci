@@ -22,8 +22,11 @@ def push(word):
         topPointer += 1
         stack[topPointer] = word
 
-pop()
-push("Hello")
-push("Hi")
-pop()
-print(stack)
+if __name__ == "__main__":
+    pop()
+    push("Hello")
+    push("Hi")
+    pop()
+    print(stack)
+
+

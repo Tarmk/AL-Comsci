@@ -1,0 +1,64 @@
+TYPE CircularQueue
+    Private Max : INTEGER
+    Private Data : ARRAY OF STRING
+    Private Front : INTEGER
+    Private Rear : INTEGER
+    Private ItemCount : INTEGER
+ENDTYPE
+
+PROCEDURE CircularQueue.Init(ByValue MaxSize : INTEGER)
+    Max <- MaxSize
+    Data <- NEW ARRAY[0:Max-1] OF STRING
+    Front <- 0
+    Rear <- -1
+    ItemCount <- 0
+ENDPROCEDURE
+
+FUNCTION CircularQueue.IsFull() RETURNS BOOLEAN
+    RETURN ItemCount = Max
+ENDFUNCTION
+
+FUNCTION CircularQueue.IsEmpty() RETURNS BOOLEAN
+    RETURN ItemCount = 0
+ENDFUNCTION
+
+PROCEDURE CircularQueue.Enqueue(ByValue Item : STRING)
+    IF IsFull() THEN
+        RAISE "Queue Full"
+    ELSE
+        Rear <- (Rear + 1) MOD Max
+        Data[Rear] <- Item
+        ItemCount <- ItemCount + 1
+    ENDIF
+ENDPROCEDURE
+
+FUNCTION CircularQueue.Dequeue() RETURNS STRING
+    IF IsEmpty() THEN
+        RAISE "Queue Empty"
+    ELSE
+        DECLARE Item : STRING
+        Item <- Data[Front]
+        Front <- (Front + 1) MOD Max
+        ItemCount <- ItemCount - 1
+        RETURN Item
+    ENDIF
+ENDFUNCTION
+
+// Example usage
+DECLARE CQ : CircularQueue
+CALL CQ.Init(5)
+CALL CQ.Enqueue("Tarm")
+CALL CQ.Enqueue("Vivaan")
+CALL CQ.Enqueue("Hello")
+CALL CQ.Enqueue("Hi")
+CALL CQ.Enqueue("TJ")
+OUTPUT CQ.Dequeue()
+OUTPUT CQ.Dequeue()
+OUTPUT CQ.Dequeue()
+OUTPUT CQ.Dequeue()
+OUTPUT CQ.Dequeue()
+CALL CQ.Enqueue("test")
+CALL CQ.Enqueue("2")
+OUTPUT CQ.Dequeue()
+
+

@@ -25,8 +25,11 @@ def enque(item):
         rearPointer += 1
         queue[rearPointer] = item
 
-print(deque())
-print(queue)
-enque("Hello")
-print(queue)
-enque("hi")
+if __name__ == "__main__":
+    print(deque())
+    print(queue)
+    enque("Hello")
+    print(queue)
+    enque("hi")
+
+

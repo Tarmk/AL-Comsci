@@ -1,0 +1,46 @@
+TYPE Queue
+    Private Max : INTEGER
+    Private Data : ARRAY OF STRING
+    Private Front : INTEGER
+    Private Rear : INTEGER
+ENDTYPE
+
+PROCEDURE Queue.Init(ByValue MaxSize : INTEGER)
+    Max <- MaxSize
+    Data <- NEW ARRAY[0:Max-1] OF STRING
+    Front <- 0
+    Rear <- -1
+ENDPROCEDURE
+
+PROCEDURE Queue.Enqueue(ByValue Item : STRING)
+    IF Rear = Max - 1 THEN
+        RAISE "Queue Full"
+    ELSE
+        Rear <- Rear + 1
+        Data[Rear] <- Item
+    ENDIF
+ENDPROCEDURE
+
+FUNCTION Queue.Dequeue() RETURNS STRING
+    IF Front = Rear + 1 THEN
+        RAISE "Queue Empty"
+    ELSE
+        DECLARE Item : STRING
+        Item <- Data[Front]
+        Front <- Front + 1
+        RETURN Item
+    ENDIF
+ENDFUNCTION
+
+// Example usage
+DECLARE Q : Queue
+CALL Q.Init(5)
+CALL Q.Enqueue("Tarm")
+CALL Q.Enqueue("Vivaan")
+OUTPUT Q.Dequeue()
+CALL Q.Enqueue("Hello")
+CALL Q.Enqueue("Hi")
+OUTPUT Q.Dequeue()
+OUTPUT Q.Dequeue()
+
+

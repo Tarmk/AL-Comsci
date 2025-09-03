@@ -1,0 +1,25 @@
+Target structure under AL-Comsci/:
+
+python/data_structures/
+  - Stack.py
+  - Queue.py
+  - CircularQueue.py
+  - OOP Stack.py
+  - OOP Queue.py
+  - OOP CircularQueue.py
+
+python/misc/
+  - car.py
+  - employee.py
+  - fish_oop.py
+  - fish_procedural.py
+
+pseudocode/data_structures/
+  - stack_pseudocode.txt
+  - queue_pseudocode.txt
+  - circular_queue_pseudocode.txt
+  - oop_stack_pseudocode.txt
+  - oop_queue_pseudocode.txt
+  - oop_circular_queue_pseudocode.txt
+
+

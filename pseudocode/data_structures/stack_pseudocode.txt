@@ -1,0 +1,38 @@
+CONSTANT Max <- 5
+CONSTANT NullPointer <- -1
+
+DECLARE Stack : ARRAY[0:Max-1] OF STRING
+DECLARE TopPointer : INTEGER
+
+// initial data (example)
+Stack[0] <- "Tarm"
+Stack[1] <- "Vivaan"
+TopPointer <- 1
+
+PROCEDURE Pop()
+    IF TopPointer = NullPointer THEN
+        OUTPUT "Empty Stack"
+    ELSE
+        OUTPUT Stack[TopPointer]
+        Stack[TopPointer] <- ""
+        TopPointer <- TopPointer - 1
+    ENDIF
+ENDPROCEDURE
+
+PROCEDURE Push(ByValue Item : STRING)
+    IF TopPointer = Max - 1 THEN
+        OUTPUT "Stack Full"
+    ELSE
+        TopPointer <- TopPointer + 1
+        Stack[TopPointer] <- Item
+    ENDIF
+ENDPROCEDURE
+
+// Example usage
+CALL Pop()
+CALL Push("Hello")
+CALL Push("Hi")
+CALL Pop()
+OUTPUT Stack
+
+
